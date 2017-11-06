@@ -82,35 +82,6 @@ public class HomeMain1Fragment extends Fragment implements View.OnClickListener,
     }
 
     private void initView(View view) {
-//        mChart.setUsePercentValues(true);//显示成百分比
-//        mChart.getDescription().setEnabled(false);
-//        mChart.setExtraOffsets(5, 10, 5, 5);
-//        mChart.getLegend().setEnabled(false);//图例是否可用
-//
-//        mChart.setDragDecelerationFrictionCoef(0.95f);
-//
-////        mChart.setCenterTextTypeface(mTfLight);
-//        mChart.setCenterText("22");
-//
-//        mChart.setDrawHoleEnabled(true);
-//        mChart.setHoleColor(Color.WHITE);
-//
-//        mChart.setTransparentCircleColor(Color.WHITE);
-//        mChart.setTransparentCircleAlpha(110);
-//
-//        mChart.setHoleRadius(0f);//半径
-//        mChart.setTransparentCircleRadius(0f);// 半透明圈
-//        mChart.setDrawCenterText(true);//饼状图中间可以添加文字
-//
-//        mChart.setRotationAngle(90);// 初始旋转角度
-//        // enable rotation of the chart by touch
-//        mChart.setRotationEnabled(true);// 可以手动旋转
-//        mChart.setHighlightPerTapEnabled(true);
-//
-//        mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
-//        mChart.setEntryLabelColor(Color.WHITE);
-//        mChart.setEntryLabelTextSize(12f);
-//
         mSwipeRefreshWidget = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_widget);
 
          mChart = (PieChart) view.findViewById(R.id.spread_pie_chart);
@@ -118,7 +89,7 @@ public class HomeMain1Fragment extends Fragment implements View.OnClickListener,
         mChart.setUsePercentValues(false);            //使用百分比显示
         mChart.getDescription().setEnabled(false);    //设置pieChart图表的描述
         mChart.setBackgroundColor(Color.WHITE);      //设置pieChart图表背景色
-        mChart.setExtraOffsets(5, 10, 60, 10);        //设置pieChart图表上下左右的偏移，类似于外边距
+//        mChart.setExtraOffsets(5, 5, 5, 5);        //设置pieChart图表上下左右的偏移，类似于外边距
         mChart.setDragDecelerationFrictionCoef(0.95f);//设置pieChart图表转动阻力摩擦系数[0,1]
         mChart.setRotationAngle(0);                   //设置pieChart图表起始角度
         mChart.setRotationEnabled(true);              //设置pieChart图表是否可以手动旋转
@@ -176,7 +147,7 @@ public class HomeMain1Fragment extends Fragment implements View.OnClickListener,
         pieEntryList.add(CashBalance);
         pieEntryList.add(ConsumptionBalance);
         //饼状图数据集 PieDataSet
-        PieDataSet pieDataSet = new PieDataSet(pieEntryList, "流量总览");
+        PieDataSet pieDataSet = new PieDataSet(pieEntryList, "总流量 :1G");
         pieDataSet.setSliceSpace(3f);           //设置饼状Item之间的间隙
         pieDataSet.setSelectionShift(10f);      //设置饼状Item被选中时变化的距离
         pieDataSet.setColors(colors);           //为DataSet中的数据匹配上颜色集(饼图Item颜色)
@@ -242,7 +213,6 @@ public class HomeMain1Fragment extends Fragment implements View.OnClickListener,
 //
 //            case R.id.mRL2:
 //                mDrawerLayout.closeDrawer(Gravity.END,true);
-//                startActivityForResult(new Intent(view.getContext(),CreatePackageActivity.class),0);
 //                break;
 //            case R.id.tvWallet2:
 //            case R.id.tvWallet3:
@@ -289,29 +259,29 @@ public class HomeMain1Fragment extends Fragment implements View.OnClickListener,
     }
 
     private void getWallet() {
-        String url = AllUrl.getInstance().getAccountWalletsUrl();
-        if (HttpUtil.isNetworkAvailable(mContext)) {
-            AsyncTaskManager.getInstance().StartHttp(new BaseRequestParm(url, "",
-                            AsyncTaskManager.ContentTypeJson, "GET", LoginConfig.getAuthorization()),
-                    new RequestListener<BaseResponseBean>() {
-
-                        @Override
-                        public void onFailed() {
-                            handler.sendEmptyMessage(GlobleValue.FAIL);
-                        }
-
-                        @Override
-                        public void onComplete(BaseResponseBean bean) {
-                            if (bean.isSuccess()) {
-                                analiData(bean);
-                            } else
-                                handler.sendEmptyMessage(GlobleValue.FAIL);
-                        }
-                    }, mContext);
-        } else {
-            Toasty.error(mContext, "网络未连接", Toast.LENGTH_SHORT, true).show();
-            return;
-        }
+//        String url = AllUrl.getInstance().getAccountWalletsUrl();
+//        if (HttpUtil.isNetworkAvailable(mContext)) {
+//            AsyncTaskManager.getInstance().StartHttp(new BaseRequestParm(url, "",
+//                            AsyncTaskManager.ContentTypeJson, "GET", LoginConfig.getAuthorization()),
+//                    new RequestListener<BaseResponseBean>() {
+//
+//                        @Override
+//                        public void onFailed() {
+//                            handler.sendEmptyMessage(GlobleValue.FAIL);
+//                        }
+//
+//                        @Override
+//                        public void onComplete(BaseResponseBean bean) {
+//                            if (bean.isSuccess()) {
+//                                analiData(bean);
+//                            } else
+//                                handler.sendEmptyMessage(GlobleValue.FAIL);
+//                        }
+//                    }, mContext);
+//        } else {
+//            Toasty.error(mContext, "网络未连接", Toast.LENGTH_SHORT, true).show();
+//            return;
+//        }
     }
 
     private Handler handler = new Handler() {

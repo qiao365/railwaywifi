@@ -66,8 +66,7 @@ public class HttpUtil {
         return false;
     }
 
-    public static String uploadData(BaseRequestParm parm,
-                                    String ebon_encrypt) {
+    public static String uploadData(BaseRequestParm parm) {
 
         HttpURLConnection conn = null;
         try {

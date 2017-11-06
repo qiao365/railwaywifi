@@ -16,6 +16,7 @@ public class BaseActivity extends AutoLayoutActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLoginConfig = new LoginConfig(this);
+        initDialog();
     }
 
     private void initDialog(){

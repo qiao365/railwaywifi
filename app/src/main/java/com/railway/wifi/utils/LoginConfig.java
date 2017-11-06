@@ -75,16 +75,13 @@ public class LoginConfig {
         return sp.getString("AvailbleTime", "0");
     }
 
-
-    // 默认选中钱包
-    public static int getDefailtWallt() {
-        return sp.getInt("DefailtWallt", 0);
+    public static Boolean getIsLog() {
+        return sp.getBoolean("isLOG", false);
     }
 
-    // 默认选中钱包
-    public static void setDefailtWallt(int defailtid) {
+    public static void setIsLog(Boolean isLOG) {
         Editor ed = sp.edit();
-        ed.putInt("DefailtWallt", defailtid);
+        ed.putBoolean("isLOG", isLOG);
         ed.commit();
     }
 

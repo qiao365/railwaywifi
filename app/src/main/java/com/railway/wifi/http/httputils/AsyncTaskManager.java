@@ -2,15 +2,13 @@ package com.railway.wifi.http.httputils;
 
 import android.content.Context;
 import android.util.Log;
-
 import com.railway.wifi.http.requestparams.BaseRequestParm;
 import com.railway.wifi.http.responsebeans.RequestListener;
 import com.railway.wifi.utils.LoginConfig;
+import com.railway.wifi.utils.SystemLog;
 import com.railway.wifi.utils.Utils;
 import com.google.gson.JsonObject;
 import com.railway.wifi.http.responsebeans.BaseResponseBean;
-import com.railway.wifi.utils.SystemLog;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -129,14 +127,7 @@ public class AsyncTaskManager {
 			result = HttpUtil.postMethod(parms.getUrl(), parms.getAuthorization(), parms.getTextMap(),
 					parms.getImageUrlList(), parms.getFilePath());
 		} else {
-//			if (parms.isEncryption()) {
-//				// 1代表加密
-				result = HttpUtil.uploadData(parms,"1");
-//			} else {
-//				// 0代表不加密
-//				result = HttpUtil.uploadData(parms,"0");
-//			}
-
+				result = HttpUtil.uploadData(parms);
 		}
 		return new BaseResponseBean(result);
 	}

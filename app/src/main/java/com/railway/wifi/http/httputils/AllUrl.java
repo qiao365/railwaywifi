@@ -16,40 +16,29 @@ public class AllUrl {
         return mAllUrl;
     }
 
-
-    //创建账户 http://192.168.1.122:10060/ubc/bag/account/create
-    public String getCreatAccountUrl() {
-        return Url.BASE_URL + "/account/create";
-    }
-
     //登录账户
-    public String getLoginAccountUrl() {
-        return Url.BASE_URL + "/account/token";
+    public String getLoginUrl() {
+        return Url.BASE_URL + "/local/webservice?fun=login";
     }
 
-    //刷新token
+    //强制IP下线
+    public String getShutDownIpUrl() {
+        return Url.BASE_URL + "/local/webservice?fun=shutdownIp";
+    }
+
+    //获取设备所有终端连接设备状态
+    public String getAllDevicesUrl() {
+        return Url.BASE_URL + "/local/webservice?fun=getOnlineIps";
+    }
+
+    //判断是否登录
+    public String getIsLogUrl() {
+        return Url.BASE_URL + "/local/webservice?fun=isLogin";
+    }
+
+
     public String getRefreshTokenUrl() {
-        return Url.BASE_URL + "/account/token";
-    }
-
-    //创建钱包
-    public String getCreatWalletUrl() {
-        return Url.BASE_URL + "/account/wallet";
-    }
-
-    //账户钱包列表
-    public String getAccountWalletsUrl() {
-        return Url.BASE_URL + "/account/wallet/project";
-    }
-
-    //账户钱包币的列表
-    public String getAccountCoinsUrl(String projectAddress) {
-        return Url.BASE_URL + "/account/wallet/" + projectAddress + "/item";
-    }
-
-    //账户钱包币的信息
-    public String getAccountCoinDefailUrl(String projectAddress) {
-        return Url.BASE_URL + "/account/wallet/project/" + projectAddress;
+        return Url.BASE_URL + "";
     }
 
 }

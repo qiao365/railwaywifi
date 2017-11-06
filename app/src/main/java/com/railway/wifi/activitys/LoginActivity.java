@@ -1,8 +1,5 @@
 package com.railway.wifi.activitys;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,16 +33,12 @@ import com.railway.wifi.http.responsebeans.BaseResponseBean;
 import es.dmoral.toasty.Toasty;
 
 /**
- * A login screen that offers login via email/password.
+ * A login screen that offers login .
  */
+
 public class LoginActivity extends BaseActivity {
 
-    // UI references.
-    private AutoCompleteTextView mEmailView;
-    private EditText mPasswordView;
-    private View mProgressView;
-    private View mLoginFormView;
-    private LoginConfig mLoginConfig;
+    private EditText email;
 
     private Handler handler = new Handler() {
         @Override
@@ -54,41 +47,25 @@ public class LoginActivity extends BaseActivity {
             hideDialog();
             switch (msg.what) {
                 case GlobleValue.SUCCESS:
-                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
-                    finish();
+                    mLoginConfig.setUserName(email.getText().toString());
+                    backfinish();
                     break;
                 case GlobleValue.FAIL:
-                    Toasty.error(LoginActivity.this,"请检查账户及密码是否正确", Toast.LENGTH_SHORT,true).show();
+                    Toasty.error(LoginActivity.this, "网络连接失败", Toast.LENGTH_SHORT, true).show();
                     break;
             }
         }
     };
 
+    private void setIslog(Boolean bolean) {
+        mLoginConfig.setIsLog(bolean);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        findViewById(R.id.otherLogin).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });
-
+        email = (EditText) findViewById(R.id.email);
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -96,78 +73,25 @@ public class LoginActivity extends BaseActivity {
                 attemptLogin();
             }
         });
-
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
-        Button email_register_in_button = (Button)findViewById(R.id.email_register_in_button);
-        email_register_in_button.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                attemptRegister();
-            }
-        });
-        mLoginConfig = new LoginConfig(this);
     }
 
-    private void attemptRegister() {
-        startActivity(new Intent(this,CreateAccountActivity.class));
+    private void backfinish() {
+        Intent mIntent = new Intent();
+        // 设置结果，并进行传送
+        this.setResult(RESULT_OK, mIntent);
+        finish();
     }
 
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     */
     private void attemptLogin() {
-
-        // Reset errors.
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
-
-        // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
-
-        boolean cancel = false;
-        View focusView = null;
-
-        // Check for a valid password, if the user entered one.
-        if (TextUtils.isEmpty(password) || !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
-        }
-
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_name));
-            focusView = mEmailView;
-            cancel = true;
-        }
-
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
-            focusView.requestFocus();
-        } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            showProgress(false);
-            doLogin(email, MD5Util.encrypt(password));
-        }
+        doLogin("", MD5Util.encrypt(""));
     }
 
     private void doLogin(final String name, String psw) {
-//        encodeURIComponent
-//        name = URLEncoder.encode(name);
-        String date = "username=" + name + "&password=" + psw + "&grant_type=password";
-
-        String url = AllUrl.getInstance().getLoginAccountUrl();
+        String url = AllUrl.getInstance().getLoginUrl();
         if (HttpUtil.isNetworkAvailable(this)) {
             showDialog();
-            AsyncTaskManager.getInstance().StartHttp(new BaseRequestParm(url, date,
-                            AsyncTaskManager.ContentTypeXfl, "POST", AsyncTaskManager.LoginToken),
+            AsyncTaskManager.getInstance().StartHttpNotToken(new BaseRequestParm(url, "",
+                            AsyncTaskManager.ContentTypeJson, "GET", null),
                     new RequestListener<BaseResponseBean>() {
 
                         @Override
@@ -178,7 +102,6 @@ public class LoginActivity extends BaseActivity {
                         @Override
                         public void onComplete(BaseResponseBean bean) {
                             if (bean.isSuccess()) {
-                                LoginConfig.setUserName(name);
                                 analiData(bean);
                             } else
                                 handler.sendEmptyMessage(GlobleValue.FAIL);
@@ -186,67 +109,23 @@ public class LoginActivity extends BaseActivity {
                     }, this);
         } else {
             Toasty.error(this,"网络未连接", Toast.LENGTH_SHORT,true).show();
-            return;
         }
     }
 
     private void analiData(BaseResponseBean bean) {
         // 数据解析
-            JsonObject json = GsonUtils.getRootJsonObject(bean.getResult());
-            String token = GsonUtils.getKeyValue(json, "access_token").getAsString();
-            String refresh_token = GsonUtils.getKeyValue(json, "refresh_token").getAsString();
-            String expires_in = GsonUtils.getKeyValue(json, "expires_in").getAsString();// 有效时间
-            if (token != null) {
-                mLoginConfig.setAuthorization("Bearer " + token);
-                mLoginConfig.setReAuthorization(refresh_token);
-                mLoginConfig.setAvailbleTime(expires_in);
-                mLoginConfig.setStartTime(System.currentTimeMillis());
-                Log.i("i", "获取token=" + token);
+        JsonObject json = GsonUtils.getRootJsonObject(bean.getResult());
+        if (json.has("Result")) {
+            String Result = GsonUtils.getKeyValue(json, "Result").getAsString();
+            if (Result.equals("Success")) {
+                setIslog(true);
                 handler.sendEmptyMessage(GlobleValue.SUCCESS);
             } else {
-                handler.sendEmptyMessage(GlobleValue.FAIL);
+                setIslog(false);
             }
-    }
-
-    /**
-     * Shows the progress UI and hides the login form.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    private void showProgress(final boolean show) {
-        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-            mLoginFormView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-                }
-            });
-
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mProgressView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-                }
-            });
         } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+            setIslog(false);
         }
-    }
-
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 5;
     }
 
 }

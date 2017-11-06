@@ -72,22 +72,7 @@
             android:value="1920" />
 
         <activity
-            android:name=".activitys.ReceivablesCodeActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activitys.LoginActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activitys.CoinDetialActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activitys.CreateAccountActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activitys.CreatePackageActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activitys.TransferActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activitys.AboutUsActivity"

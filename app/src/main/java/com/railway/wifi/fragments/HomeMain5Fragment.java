@@ -35,9 +35,9 @@ public class HomeMain5Fragment extends Fragment implements View.OnClickListener 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.aboutus:
-                startActivity(new Intent(getContext(), AboutUsActivity.class));
-                break;
+//            case R.id.aboutus:
+//                startActivity(new Intent(getContext(), AboutUsActivity.class));
+//                break;
             default:
 
                 break;
