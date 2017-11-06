@@ -9,9 +9,9 @@ import android.util.TypedValue;
 import android.view.View;
 
 import com.railway.wifi.R;
-import com.crhsi.wifi.adapters.RecyclerViewDetialAdapter;
-import com.crhsi.wifi.models.RecordItem;
-import com.crhsi.wifi.models.CoinObject;
+import com.railway.wifi.adapters.RecyclerViewDetialAdapter;
+import com.railway.wifi.models.RecordItem;
+import com.railway.wifi.models.CoinObject;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import java.util.ArrayList;

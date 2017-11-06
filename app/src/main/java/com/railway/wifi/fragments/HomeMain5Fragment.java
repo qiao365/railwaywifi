@@ -1,4 +1,4 @@
-package com.crhsi.wifi.fragments;
+package com.railway.wifi.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.railway.wifi.R;
-import com.crhsi.wifi.activitys.AboutUsActivity;
-import com.crhsi.wifi.activitys.GameCenterActivity;
+import com.railway.wifi.activitys.AboutUsActivity;
+import com.railway.wifi.activitys.GameCenterActivity;
 
 
 /**

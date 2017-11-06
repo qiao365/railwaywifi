@@ -1,13 +1,13 @@
-package com.crhsi.wifi.http.httputils;
+package com.railway.wifi.http.httputils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.webkit.MimeTypeMap;
 
-import com.crhsi.wifi.http.requestparams.BaseRequestParm;
-import com.crhsi.wifi.utils.InternetUtil;
-import com.crhsi.wifi.utils.SystemLog;
-import com.crhsi.wifi.utils.Utils;
+import com.railway.wifi.http.requestparams.BaseRequestParm;
+import com.railway.wifi.utils.InternetUtil;
+import com.railway.wifi.utils.SystemLog;
+import com.railway.wifi.utils.Utils;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

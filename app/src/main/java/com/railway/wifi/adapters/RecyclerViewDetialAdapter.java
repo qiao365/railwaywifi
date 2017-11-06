@@ -1,4 +1,4 @@
-package com.crhsi.wifi.adapters;
+package com.railway.wifi.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.railway.wifi.R;
-import com.crhsi.wifi.models.RecordItem;
-import com.crhsi.wifi.views.RecyclerViewItemClickListener;
+import com.railway.wifi.models.RecordItem;
+import com.railway.wifi.views.RecyclerViewItemClickListener;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import java.util.List;

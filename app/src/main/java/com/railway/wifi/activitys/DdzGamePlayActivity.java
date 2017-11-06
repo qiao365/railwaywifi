@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.railway.wifi.R;
-import com.crhsi.wifi.ddznet.TestClient;
+import com.railway.wifi.ddznet.TestClient;
 import com.vilyever.socketclient.SocketClient;
 import com.zhy.autolayout.AutoLayoutActivity;
 

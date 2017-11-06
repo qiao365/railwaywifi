@@ -1,4 +1,4 @@
-package com.crhsi.wifi.ddznet;
+package com.railway.wifi.ddznet;
 
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;

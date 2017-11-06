@@ -1,4 +1,4 @@
-package com.crhsi.wifi.http.responsebeans;
+package com.railway.wifi.http.responsebeans;
 
 /**
  * @description 响应处理类 对返回数据进行封装和处理

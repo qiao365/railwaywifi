@@ -16,8 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="欢迎使用青藏铁路无线上网服务"
-            />
+            android:text="欢迎使用青藏铁路无线上网服务" />
     </RelativeLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout
@@ -25,158 +24,158 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <com.crhsi.wifi.views.ObservableScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
+        <com.railway.wifi.views.ObservableScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="30px">
-                <com.youth.banner.Banner
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/banner"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="620px" />
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="30px">
+
+                    <com.youth.banner.Banner xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="620px" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20px"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="120px"
+                            android:layout_height="120px"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/ic_defailt" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10px"
+                            android:text="院线"
+                            android:textSize="32px" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="120px"
+                            android:layout_height="120px"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/ic_defailt" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10px"
+                            android:text="游戏"
+                            android:textSize="32px" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="120px"
+                            android:layout_height="120px"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/ic_defailt" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10px"
+                            android:text="阅读"
+                            android:textSize="32px" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="120px"
+                            android:layout_height="120px"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/ic_defailt" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10px"
+                            android:text="商城"
+                            android:textSize="32px" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="120px"
+                            android:layout_height="120px"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/ic_defailt" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10px"
+                            android:text="人文"
+                            android:textSize="32px" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:layout_marginBottom="40px"
+                    android:layout_marginTop="20px"
+                    android:background="@color/black" />
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/spread_pie_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="500px" />
+
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20px"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="120px"
-                        android:layout_height="120px"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/ic_defailt" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10px"
-                        android:text="院线"
-                        android:textSize="32px" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="120px"
-                        android:layout_height="120px"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/ic_defailt" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10px"
-                        android:text="游戏"
-                        android:textSize="32px" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="120px"
-                        android:layout_height="120px"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/ic_defailt" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10px"
-                        android:text="阅读"
-                        android:textSize="32px" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="120px"
-                        android:layout_height="120px"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/ic_defailt" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10px"
-                        android:text="商城"
-                        android:textSize="32px" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="120px"
-                        android:layout_height="120px"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/ic_defailt" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10px"
-                        android:text="人文"
-                        android:textSize="32px" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2px"
-                android:layout_marginBottom="40px"
-                android:layout_marginTop="20px"
-                android:background="@color/black" />
-
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/spread_pie_chart"
-                android:layout_width="match_parent"
-                android:layout_height="500px" />
-
-        </LinearLayout>
-    </com.crhsi.wifi.views.ObservableScrollView>
+        </com.railway.wifi.views.ObservableScrollView>
     </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

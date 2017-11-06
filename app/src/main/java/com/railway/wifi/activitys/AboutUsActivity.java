@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.railway.wifi.R;
-import com.crhsi.wifi.utils.Utils;
+import com.railway.wifi.utils.Utils;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 public class AboutUsActivity extends AutoLayoutActivity implements View.OnClickListener{

@@ -10,18 +10,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.crhsi.wifi.http.httputils.AsyncTaskManager;
-import com.crhsi.wifi.http.httputils.HttpUtil;
-import com.crhsi.wifi.http.httputils.JsonObjectBuilder;
-import com.crhsi.wifi.http.requestparams.BaseRequestParm;
-import com.crhsi.wifi.http.responsebeans.RequestListener;
-import com.crhsi.wifi.utils.GlobleValue;
-import com.crhsi.wifi.utils.LoginConfig;
+import com.railway.wifi.http.httputils.AsyncTaskManager;
+import com.railway.wifi.http.httputils.HttpUtil;
+import com.railway.wifi.http.httputils.JsonObjectBuilder;
+import com.railway.wifi.http.requestparams.BaseRequestParm;
+import com.railway.wifi.http.responsebeans.RequestListener;
+import com.railway.wifi.utils.GlobleValue;
+import com.railway.wifi.utils.LoginConfig;
 import com.railway.wifi.R;
-import com.crhsi.wifi.http.httputils.AllUrl;
-import com.crhsi.wifi.http.httputils.GsonUtils;
-import com.crhsi.wifi.http.responsebeans.BaseResponseBean;
-import com.crhsi.wifi.models.CreateWallet;
+import com.railway.wifi.http.httputils.AllUrl;
+import com.railway.wifi.http.httputils.GsonUtils;
+import com.railway.wifi.http.responsebeans.BaseResponseBean;
+import com.railway.wifi.models.CreateWallet;
 
 import es.dmoral.toasty.Toasty;
 

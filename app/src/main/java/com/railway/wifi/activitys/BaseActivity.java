@@ -3,7 +3,7 @@ package com.railway.wifi.activitys;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import com.crhsi.wifi.utils.LoginConfig;
+import com.railway.wifi.utils.LoginConfig;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;

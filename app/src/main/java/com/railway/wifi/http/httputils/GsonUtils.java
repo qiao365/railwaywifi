@@ -1,4 +1,4 @@
-package com.crhsi.wifi.http.httputils;
+package com.railway.wifi.http.httputils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

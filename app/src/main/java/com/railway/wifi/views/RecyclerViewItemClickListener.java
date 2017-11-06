@@ -1,4 +1,4 @@
-package com.crhsi.wifi.views;
+package com.railway.wifi.views;
 
 import android.view.View;
 

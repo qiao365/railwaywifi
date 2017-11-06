@@ -1,4 +1,4 @@
-package com.crhsi.wifi.adapters;
+package com.railway.wifi.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.railway.wifi.R;
-import com.crhsi.wifi.models.Wallet;
+import com.railway.wifi.models.Wallet;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import java.util.ArrayList;

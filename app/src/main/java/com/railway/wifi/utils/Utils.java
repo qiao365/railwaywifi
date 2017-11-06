@@ -1,4 +1,4 @@
-package com.crhsi.wifi.utils;
+package com.railway.wifi.utils;
 
 import android.app.Activity;
 import android.app.ActivityManager;

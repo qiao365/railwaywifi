@@ -12,10 +12,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.TextView;
 
-import com.crhsi.wifi.fragments.HomeMain1Fragment;
+import com.railway.wifi.fragments.HomeMain1Fragment;
 import com.railway.wifi.R;
-import com.crhsi.wifi.fragments.HomeMain5Fragment;
-import com.crhsi.wifi.fragments.HomeMain6Fragment;
+import com.railway.wifi.fragments.HomeMain5Fragment;
+import com.railway.wifi.fragments.HomeMain6Fragment;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 public class MainActivity extends AutoLayoutActivity implements View.OnClickListener {

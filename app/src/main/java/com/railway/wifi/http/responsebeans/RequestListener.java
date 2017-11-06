@@ -1,4 +1,4 @@
-package com.crhsi.wifi.http.responsebeans;
+package com.railway.wifi.http.responsebeans;
 
 public abstract class RequestListener<T extends ResponseBean> {
 

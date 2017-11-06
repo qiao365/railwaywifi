@@ -1,4 +1,4 @@
-package com.crhsi.wifi.http.httputils;
+package com.railway.wifi.http.httputils;
 
 public class Url {
     public static String HTTP = "http://";

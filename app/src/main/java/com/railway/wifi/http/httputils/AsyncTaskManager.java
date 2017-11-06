@@ -1,15 +1,15 @@
-package com.crhsi.wifi.http.httputils;
+package com.railway.wifi.http.httputils;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.crhsi.wifi.http.requestparams.BaseRequestParm;
-import com.crhsi.wifi.http.responsebeans.RequestListener;
-import com.crhsi.wifi.utils.LoginConfig;
-import com.crhsi.wifi.utils.Utils;
+import com.railway.wifi.http.requestparams.BaseRequestParm;
+import com.railway.wifi.http.responsebeans.RequestListener;
+import com.railway.wifi.utils.LoginConfig;
+import com.railway.wifi.utils.Utils;
 import com.google.gson.JsonObject;
-import com.crhsi.wifi.http.responsebeans.BaseResponseBean;
-import com.crhsi.wifi.utils.SystemLog;
+import com.railway.wifi.http.responsebeans.BaseResponseBean;
+import com.railway.wifi.utils.SystemLog;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

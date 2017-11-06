@@ -1,4 +1,4 @@
-package com.crhsi.wifi.http.requestparams;
+package com.railway.wifi.http.requestparams;
 
 import org.apache.http.NameValuePair;
 

@@ -1,4 +1,4 @@
-package com.crhsi.wifi.models;
+package com.railway.wifi.models;
 
 import com.google.gson.annotations.Expose;
 

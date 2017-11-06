@@ -1,8 +1,8 @@
-package com.crhsi.wifi.http.responsebeans;
+package com.railway.wifi.http.responsebeans;
 
 import android.util.Log;
 
-import com.crhsi.wifi.http.httputils.GsonUtils;
+import com.railway.wifi.http.httputils.GsonUtils;
 
 
 public class BaseResponseBean extends ResponseBean {

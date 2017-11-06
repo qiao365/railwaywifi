@@ -1,4 +1,4 @@
-package com.crhsi.wifi.utils;
+package com.railway.wifi.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

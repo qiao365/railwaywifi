@@ -1,4 +1,4 @@
-package com.crhsi.wifi.utils;
+package com.railway.wifi.utils;
 
 /**
  * Created by cjq on 17/8/23.
