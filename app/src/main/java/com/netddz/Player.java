@@ -13,7 +13,7 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
-import com.crhsi.ylkjcjq.R;
+import com.railway.wifi.R;
 
 public class Player {
 

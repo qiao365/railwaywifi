@@ -12,7 +12,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
-import com.crhsi.ylkjcjq.R;
+import com.railway.wifi.R;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback, OnTouchListener {
 

@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <com.crhsi.ylkjcjq.views.ObservableScrollView
+    <com.crhsi.wifi.views.ObservableScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -177,6 +177,6 @@
                 android:layout_height="500px" />
 
         </LinearLayout>
-    </com.crhsi.ylkjcjq.views.ObservableScrollView>
+    </com.crhsi.wifi.views.ObservableScrollView>
     </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

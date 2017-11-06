@@ -1,6 +1,6 @@
 package com.netddz;
 
-import com.crhsi.ylkjcjq.R;
+import com.railway.wifi.R;
 
 public interface CardImage {
 
