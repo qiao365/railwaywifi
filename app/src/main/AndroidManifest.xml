@@ -96,7 +96,11 @@
         <activity
             android:name="com.netddz.NetDDZActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".activitys.GameCenterActivity"
+        <activity
+            android:name=".activitys.GameCenterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.WebViewActivity"
             android:screenOrientation="portrait"></activity>
     </application>
 

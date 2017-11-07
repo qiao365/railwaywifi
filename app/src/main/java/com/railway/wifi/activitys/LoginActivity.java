@@ -16,9 +16,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.railway.wifi.http.httputils.HttpUtil;
 import com.railway.wifi.http.responsebeans.RequestListener;
+import com.railway.wifi.utils.Code;
 import com.railway.wifi.utils.GlobleValue;
 import com.railway.wifi.utils.LoginConfig;
 import com.railway.wifi.utils.MD5Util;
@@ -38,7 +38,7 @@ import es.dmoral.toasty.Toasty;
 
 public class LoginActivity extends BaseActivity {
 
-    private EditText email;
+    private EditText telPhone, verCode;
 
     private Handler handler = new Handler() {
         @Override
@@ -47,7 +47,7 @@ public class LoginActivity extends BaseActivity {
             hideDialog();
             switch (msg.what) {
                 case GlobleValue.SUCCESS:
-                    mLoginConfig.setUserName(email.getText().toString());
+                    mLoginConfig.setUserName(telPhone.getText().toString());
                     backfinish();
                     break;
                 case GlobleValue.FAIL:
@@ -65,19 +65,27 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        email = (EditText) findViewById(R.id.email);
+        telPhone = (EditText) findViewById(R.id.telPhone);
+        verCode = (EditText) findViewById(R.id.verCode);
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        Button btnsendCode = (Button) findViewById(R.id.sendCode);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
             }
         });
+        btnsendCode.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                verCode.setText(Code.getInstance().createCode());
+            }
+        });
     }
 
     private void backfinish() {
         Intent mIntent = new Intent();
-        mIntent.putExtra("islog","true");
+        mIntent.putExtra("islog", "true");
         // 设置结果，并进行传送
         this.setResult(RESULT_OK, mIntent);
         finish();
@@ -109,7 +117,7 @@ public class LoginActivity extends BaseActivity {
                         }
                     }, this);
         } else {
-            Toasty.error(this,"网络未连接", Toast.LENGTH_SHORT,true).show();
+            Toasty.error(this, "网络未连接", Toast.LENGTH_SHORT, true).show();
         }
     }
 

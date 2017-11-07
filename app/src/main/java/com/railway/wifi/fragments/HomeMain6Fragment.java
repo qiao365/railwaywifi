@@ -75,15 +75,15 @@ public class HomeMain6Fragment extends Fragment implements View.OnClickListener 
 
         // 设置 pieChart 内部圆环属性
         mChart.setDrawHoleEnabled(true);              //是否显示PieChart内部圆环(true:下面属性才有意义)
-        mChart.setHoleRadius(0f);                    //设置PieChart内部圆的半径(这里设置28.0f)
-        mChart.setTransparentCircleRadius(0f);       //设置PieChart内部透明圆的半径(这里设置31.0f)
+        mChart.setHoleRadius(50f);                    //设置PieChart内部圆的半径(这里设置28.0f)
+        mChart.setTransparentCircleRadius(53f);       //设置PieChart内部透明圆的半径(这里设置31.0f)
         mChart.setTransparentCircleColor(Color.BLACK);//设置PieChart内部透明圆与内部圆间距(31f-28f)填充颜色
         mChart.setTransparentCircleAlpha(50);         //设置PieChart内部透明圆与内部圆间距(31f-28f)透明度[0~255]数值越小越透明
-        mChart.setHoleColor(Color.WHITE);             //设置PieChart内部圆的颜色
+        mChart.setHoleColor(Color.parseColor("#ea9ff7"));             //设置PieChart内部圆的颜色
         mChart.setDrawCenterText(true);               //是否绘制PieChart内部中心文本（true：下面属性才有意义）
-        mChart.setCenterText("Test");                 //设置PieChart内部圆文字的内容
-        mChart.setCenterTextSize(0f);                //设置PieChart内部圆文字的大小
-        mChart.setCenterTextColor(Color.RED);         //设置PieChart内部圆文字的颜色
+        mChart.setCenterText("流量");                 //设置PieChart内部圆文字的内容
+        mChart.setCenterTextSize(20f);                //设置PieChart内部圆文字的大小
+        mChart.setCenterTextColor(Color.WHITE);         //设置PieChart内部圆文字的颜色
 
         // 获取pieCahrt图列
         Legend l = mChart.getLegend();
@@ -92,16 +92,18 @@ public class HomeMain6Fragment extends Fragment implements View.OnClickListener 
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         l.setOrientation(Legend.LegendOrientation.VERTICAL);
         l.setForm(Legend.LegendForm.DEFAULT); //设置图例的形状
-        l.setFormSize(10);                      //设置图例的大小
+        l.setFormSize(8);                      //设置图例的大小
         l.setFormToTextSpace(10f);              //设置每个图例实体中标签和形状之间的间距
         l.setDrawInside(false);
         l.setWordWrapEnabled(true);              //设置图列换行(注意使用影响性能,仅适用legend位于图表下面)
-        l.setXEntrySpace(10f);                  //设置图例实体之间延X轴的间距（setOrientation = HORIZONTAL有效）
-        l.setYEntrySpace(8f);                  //设置图例实体之间延Y轴的间距（setOrientation = VERTICAL 有效）
-        l.setYOffset(0f);                      //设置比例块Y轴偏移量
+//        l.setXEntrySpace(10f);                  //设置图例实体之间延X轴的间距（setOrientation = HORIZONTAL有效）
+//        l.setOrientation(Legend.LegendOrientation.VERTICAL);
+//        l.setYEntrySpace(-18f);                  //设置图例实体之间延Y轴的间距（setOrientation = VERTICAL 有效）
+//        l.setYOffset(-18f);                      //设置比例块Y轴偏移量
         l.setTextSize(14f);                      //设置图例标签文本的大小
-        l.setTextColor(Color.parseColor("#ff9933"));//设置图例标签文本的颜色
+        l.setTextColor(Color.BLACK);//设置图例标签文本的颜色
         setData();
+
     }
 
     /**
@@ -110,8 +112,8 @@ public class HomeMain6Fragment extends Fragment implements View.OnClickListener 
     private void setData() {
         ArrayList<PieEntry> pieEntryList = new ArrayList<PieEntry>();
         ArrayList<Integer> colors = new ArrayList<Integer>();
-        colors.add(Color.parseColor("#f17548"));
-        colors.add(Color.parseColor("#FF9933"));
+        colors.add(Color.parseColor("#3314f3"));
+        colors.add(Color.parseColor("#82d637"));
         //饼图实体 PieEntry
         PieEntry CashBalance = new PieEntry(15, "流量剩余 150 M");
         PieEntry ConsumptionBalance = new PieEntry(85, "已用流量 850 M");

@@ -14,11 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.railway.wifi.activitys.WebViewActivity;
 import com.railway.wifi.http.httputils.HttpUtil;
 import com.railway.wifi.utils.GlobleValue;
 import com.railway.wifi.utils.PicassoImageLoader;
@@ -70,6 +72,7 @@ public class HomeMain1Fragment extends Fragment implements View.OnClickListener,
     private Context mContext;
     private String devicesNum = "--";
     private TextView tvDevices;
+    private LinearLayout topBtn1, topBtn2, topBtn3;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -88,7 +91,16 @@ public class HomeMain1Fragment extends Fragment implements View.OnClickListener,
 
     private void initView(View view) {
         tvDevices = (TextView) view.findViewById(R.id.tvDevices);
+        topBtn1 = (LinearLayout) view.findViewById(R.id.topBtn1);
+        topBtn2 = (LinearLayout) view.findViewById(R.id.topBtn2);
+        topBtn3 = (LinearLayout) view.findViewById(R.id.topBtn3);
+        topBtn1.setOnClickListener(this);
+        topBtn2.setOnClickListener(this);
+        topBtn3.setOnClickListener(this);
         mSwipeRefreshWidget = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_widget);
+        //设置卷内的颜色
+        mSwipeRefreshWidget.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
         mSwipeRefreshWidget.setOnRefreshListener(this);
         mChart = (PieChart) view.findViewById(R.id.spread_pie_chart);
         // 设置 pieChart 图表基本属性
@@ -109,15 +121,15 @@ public class HomeMain1Fragment extends Fragment implements View.OnClickListener,
 
         // 设置 pieChart 内部圆环属性
         mChart.setDrawHoleEnabled(true);              //是否显示PieChart内部圆环(true:下面属性才有意义)
-        mChart.setHoleRadius(0f);                    //设置PieChart内部圆的半径(这里设置28.0f)
-        mChart.setTransparentCircleRadius(0f);       //设置PieChart内部透明圆的半径(这里设置31.0f)
+        mChart.setHoleRadius(50f);                    //设置PieChart内部圆的半径(这里设置28.0f)
+        mChart.setTransparentCircleRadius(53f);       //设置PieChart内部透明圆的半径(这里设置31.0f)
         mChart.setTransparentCircleColor(Color.BLACK);//设置PieChart内部透明圆与内部圆间距(31f-28f)填充颜色
         mChart.setTransparentCircleAlpha(50);         //设置PieChart内部透明圆与内部圆间距(31f-28f)透明度[0~255]数值越小越透明
-        mChart.setHoleColor(Color.WHITE);             //设置PieChart内部圆的颜色
+        mChart.setHoleColor(Color.parseColor("#ea9ff7"));             //设置PieChart内部圆的颜色
         mChart.setDrawCenterText(true);               //是否绘制PieChart内部中心文本（true：下面属性才有意义）
-        mChart.setCenterText("Test");                 //设置PieChart内部圆文字的内容
-        mChart.setCenterTextSize(0f);                //设置PieChart内部圆文字的大小
-        mChart.setCenterTextColor(Color.RED);         //设置PieChart内部圆文字的颜色
+        mChart.setCenterText("流量");                 //设置PieChart内部圆文字的内容
+        mChart.setCenterTextSize(20f);                //设置PieChart内部圆文字的大小
+        mChart.setCenterTextColor(Color.WHITE);         //设置PieChart内部圆文字的颜色
 
         // 获取pieCahrt图列
         Legend l = mChart.getLegend();
@@ -126,15 +138,16 @@ public class HomeMain1Fragment extends Fragment implements View.OnClickListener,
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         l.setOrientation(Legend.LegendOrientation.VERTICAL);
         l.setForm(Legend.LegendForm.DEFAULT); //设置图例的形状
-        l.setFormSize(10);                      //设置图例的大小
+        l.setFormSize(8);                      //设置图例的大小
         l.setFormToTextSpace(10f);              //设置每个图例实体中标签和形状之间的间距
         l.setDrawInside(false);
         l.setWordWrapEnabled(true);              //设置图列换行(注意使用影响性能,仅适用legend位于图表下面)
-        l.setXEntrySpace(10f);                  //设置图例实体之间延X轴的间距（setOrientation = HORIZONTAL有效）
-        l.setYEntrySpace(8f);                  //设置图例实体之间延Y轴的间距（setOrientation = VERTICAL 有效）
-        l.setYOffset(0f);                      //设置比例块Y轴偏移量
+//        l.setXEntrySpace(10f);                  //设置图例实体之间延X轴的间距（setOrientation = HORIZONTAL有效）
+//        l.setOrientation(Legend.LegendOrientation.VERTICAL);
+//        l.setYEntrySpace(-18f);                  //设置图例实体之间延Y轴的间距（setOrientation = VERTICAL 有效）
+//        l.setYOffset(-18f);                      //设置比例块Y轴偏移量
         l.setTextSize(14f);                      //设置图例标签文本的大小
-        l.setTextColor(Color.parseColor("#ff9933"));//设置图例标签文本的颜色
+        l.setTextColor(Color.BLACK);//设置图例标签文本的颜色
         setData();
 
     }
@@ -145,8 +158,8 @@ public class HomeMain1Fragment extends Fragment implements View.OnClickListener,
     private void setData() {
         ArrayList<PieEntry> pieEntryList = new ArrayList<PieEntry>();
         ArrayList<Integer> colors = new ArrayList<Integer>();
-        colors.add(Color.parseColor("#f17548"));
-        colors.add(Color.parseColor("#FF9933"));
+        colors.add(Color.parseColor("#3314f3"));
+        colors.add(Color.parseColor("#82d637"));
         //饼图实体 PieEntry
         PieEntry CashBalance = new PieEntry(15, "流量剩余 150 M");
         PieEntry ConsumptionBalance = new PieEntry(85, "已用流量 850 M");
@@ -197,35 +210,28 @@ public class HomeMain1Fragment extends Fragment implements View.OnClickListener,
         banner.start();
     }
 
-    ;
-
     @Override
     public void onClick(View view) {
-//        Picasso.with(context).load("http://i.imgur.com/DvpvklR.png").into(imageView);
+        if (!HttpUtil.isNetworkAvailable(getContext())) {
+            return;
+        }
         switch (view.getId()) {
-//            case R.id.iv_menu:
-//                if (mDrawerLayout.isDrawerOpen(Gravity.END)){
-//                    mDrawerLayout.closeDrawer(Gravity.END,true);
-//                }else {
-//                    mDrawerLayout.openDrawer(Gravity.END,true);
-//                }
-//                break;
-//            case R.id.mRL1:
-//                mDrawerLayout.closeDrawer(Gravity.END,true);
-//                startActivityForResult(new Intent(view.getContext(), CaptureActivity.class), 0);
-//                break;
-//
-//            case R.id.mRL2:
-//                mDrawerLayout.closeDrawer(Gravity.END,true);
-//                break;
-//            case R.id.tvWallet2:
-//            case R.id.tvWallet3:
-//                Intent min = new Intent(view.getContext(), ReceivablesCodeActivity.class);
-//                min.putExtra("code",tvWallet2.getText().toString());
-//                startActivity(min);
-//                break;
+            case R.id.topBtn1:
+                Intent mintent = new Intent(mContext, WebViewActivity.class);
+                mintent.putExtra("url", "https://www.baidu.com");
+                startActivity(mintent);
+                break;
+            case R.id.topBtn2:
+                Intent mintent2 = new Intent(mContext, WebViewActivity.class);
+                mintent2.putExtra("url", "http://blog.csdn.net/");
+                startActivity(mintent2);
+                break;
+            case R.id.topBtn3:
+                Intent mintent3 = new Intent(mContext, WebViewActivity.class);
+                mintent3.putExtra("url", "http://www.jianshu.com/p/8a458cab472d");
+                startActivity(mintent3);
+                break;
             default:
-
                 break;
         }
     }
