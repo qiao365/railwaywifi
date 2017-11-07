@@ -16,8 +16,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.railway.wifi.http.httputils.HttpUtil;
 import com.railway.wifi.utils.GlobleValue;
 import com.railway.wifi.utils.PicassoImageLoader;
@@ -29,9 +30,6 @@ import com.railway.wifi.http.httputils.GsonUtils;
 import com.railway.wifi.http.requestparams.BaseRequestParm;
 import com.railway.wifi.http.responsebeans.BaseResponseBean;
 import com.railway.wifi.http.responsebeans.RequestListener;
-import com.railway.wifi.models.CoinObject;
-import com.railway.wifi.models.Wallet;
-import com.railway.wifi.utils.LoginConfig;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -46,14 +44,13 @@ import com.youth.banner.Transformer;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.dmoral.toasty.Toasty;
-
 
 /**
  * 首页
  *
  * @author CJQ
  */
+
 public class HomeMain1Fragment extends Fragment implements View.OnClickListener, ObservableScrollView.ScrollViewListener, SwipeRefreshLayout.OnRefreshListener {
 
     private RecyclerView mRecyclerView;
@@ -71,6 +68,8 @@ public class HomeMain1Fragment extends Fragment implements View.OnClickListener,
     private ListView mListView;
     private SwipeRefreshLayout mSwipeRefreshWidget;
     private Context mContext;
+    private String devicesNum = "--";
+    private TextView tvDevices;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -81,10 +80,17 @@ public class HomeMain1Fragment extends Fragment implements View.OnClickListener,
         return view;
     }
 
-    private void initView(View view) {
-        mSwipeRefreshWidget = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_widget);
+    @Override
+    public void onResume() {
+        super.onResume();
+        getDivices();
+    }
 
-         mChart = (PieChart) view.findViewById(R.id.spread_pie_chart);
+    private void initView(View view) {
+        tvDevices = (TextView) view.findViewById(R.id.tvDevices);
+        mSwipeRefreshWidget = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_widget);
+        mSwipeRefreshWidget.setOnRefreshListener(this);
+        mChart = (PieChart) view.findViewById(R.id.spread_pie_chart);
         // 设置 pieChart 图表基本属性
         mChart.setUsePercentValues(false);            //使用百分比显示
         mChart.getDescription().setEnabled(false);    //设置pieChart图表的描述
@@ -195,9 +201,7 @@ public class HomeMain1Fragment extends Fragment implements View.OnClickListener,
 
     @Override
     public void onClick(View view) {
-
 //        Picasso.with(context).load("http://i.imgur.com/DvpvklR.png").into(imageView);
-
         switch (view.getId()) {
 //            case R.id.iv_menu:
 //                if (mDrawerLayout.isDrawerOpen(Gravity.END)){
@@ -228,16 +232,13 @@ public class HomeMain1Fragment extends Fragment implements View.OnClickListener,
 
     @Override
     public void onScrollChanged(ObservableScrollView scrollView, int x, int y, int oldx, int oldy) {
-
 //		Log.i("TAG","y--->"+y+"    height-->"+height);
         if (y <= height) {
             float scale = (float) y / height;
             float alpha = (255 * scale);
 //			Log.i("TAG","alpha--->"+alpha);
-
             //layout全部透明
 //			layoutHead.setAlpha(scale);
-
             //只是layout背景透明(仿知乎滑动效果)
             layoutHead.setBackgroundColor(Color.argb((int) alpha, 20, 52, 161));
             layoutHead.setAlpha(scale);
@@ -249,7 +250,6 @@ public class HomeMain1Fragment extends Fragment implements View.OnClickListener,
 
     @Override
     public void onRefresh() {
-
         mSwipeRefreshWidget.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -258,40 +258,13 @@ public class HomeMain1Fragment extends Fragment implements View.OnClickListener,
         }, 1000);
     }
 
-    private void getWallet() {
-//        String url = AllUrl.getInstance().getAccountWalletsUrl();
-//        if (HttpUtil.isNetworkAvailable(mContext)) {
-//            AsyncTaskManager.getInstance().StartHttp(new BaseRequestParm(url, "",
-//                            AsyncTaskManager.ContentTypeJson, "GET", LoginConfig.getAuthorization()),
-//                    new RequestListener<BaseResponseBean>() {
-//
-//                        @Override
-//                        public void onFailed() {
-//                            handler.sendEmptyMessage(GlobleValue.FAIL);
-//                        }
-//
-//                        @Override
-//                        public void onComplete(BaseResponseBean bean) {
-//                            if (bean.isSuccess()) {
-//                                analiData(bean);
-//                            } else
-//                                handler.sendEmptyMessage(GlobleValue.FAIL);
-//                        }
-//                    }, mContext);
-//        } else {
-//            Toasty.error(mContext, "网络未连接", Toast.LENGTH_SHORT, true).show();
-//            return;
-//        }
-    }
-
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
                 case GlobleValue.SUCCESS:
-
-
+                    tvDevices.setText("本车厢当前设备连接数：" + devicesNum);
                     break;
                 case GlobleValue.FAIL:
 
@@ -303,30 +276,38 @@ public class HomeMain1Fragment extends Fragment implements View.OnClickListener,
         }
     };
 
+    //  获取设备连接数
+    private void getDivices() {
+        String url = AllUrl.getInstance().getAllDevicesUrl();
+        if (HttpUtil.isNetworkAvailable(getContext())) {
+            AsyncTaskManager.getInstance().StartHttpNotToken(new BaseRequestParm(url, "",
+                            AsyncTaskManager.ContentTypeJson, "GET", null),
+                    new RequestListener<BaseResponseBean>() {
 
-    private List<Wallet> mWallets;
+                        @Override
+                        public void onFailed() {
+                        }
 
-    private void analiData(BaseResponseBean bean) {
-        try {
-            mWallets = GsonUtils.toList(GsonUtils.getRootJsonObject(bean.getResult()),
-                    "data", Wallet.class);
-            handler.sendEmptyMessage(GlobleValue.SUCCESS);
-        } catch (Exception e) {
-            e.printStackTrace();
-            handler.sendEmptyMessage(GlobleValue.FAIL);
+                        @Override
+                        public void onComplete(BaseResponseBean bean) {
+                            if (bean.isSuccess()) {
+                                analiData(bean);
+                            }
+                        }
+                    }, getContext());
         }
     }
 
-    private List<CoinObject> mCoinObjects;
-
-    private void analiDataCoins(BaseResponseBean bean) {
-        try {
-            mCoinObjects = GsonUtils.toList(GsonUtils.getRootJsonObject(bean.getResult()),
-                    "data", CoinObject.class);
-            handler.sendEmptyMessage(GlobleValue.SUCCESS2);
-        } catch (Exception e) {
-            e.printStackTrace();
-            handler.sendEmptyMessage(GlobleValue.FAIL);
+    private void analiData(BaseResponseBean bean) {
+        // 数据解析
+        JsonObject json = GsonUtils.getRootJsonObject(bean.getResult());
+        if (json.has("Result")) {
+            String Result = GsonUtils.getKeyValue(json, "Result").getAsString();
+            if (Result.equals("Success") && json.has("sta_list")) {
+                JsonArray dataArray = GsonUtils.getKeyValue(json, "sta_list").getAsJsonArray();
+                devicesNum = dataArray.size() + "";
+                handler.sendEmptyMessage(GlobleValue.SUCCESS);
+            }
         }
     }
 

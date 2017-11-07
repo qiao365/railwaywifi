@@ -49,12 +49,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             super.handleMessage(msg);
             switch (msg.what) {
                 case GlobleValue.SUCCESS:
-                    btn_tab5.setVisibility(View.GONE);
-                    tv_tab5.setVisibility(View.GONE);
-                    tv_tab5_bottom.setText("未连接");
-                    tv_tab5.setText("未连接");
-                    mLoginConfig.setUserName("");
-                    setIslog(false);
+
                     break;
                 case GlobleValue.SUCCESS2:
                     showhasLog();
@@ -165,8 +160,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         // TODO Auto-generated method stub
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == MainActivity.requestCode) {
-            showhasLog();
-            setIslog(true);
+            if(data != null && data.getStringExtra("islog").equals("true")){
+                showhasLog();
+                setIslog(true);
+            }
         }
     }
 
@@ -221,6 +218,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void logout() {
+        hideLogin();
         String url = AllUrl.getInstance().getShutDownIpUrl();
         if (HttpUtil.isNetworkAvailable(this)) {
             AsyncTaskManager.getInstance().StartHttpNotToken(new BaseRequestParm(url, "",
@@ -233,14 +231,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                         @Override
                         public void onComplete(BaseResponseBean bean) {
-                            if (bean.isSuccess()) {
-                                handler.sendEmptyMessage(GlobleValue.SUCCESS);
-                            }
                         }
                     }, this);
         } else {
             Toasty.error(this, "网络未连接", Toast.LENGTH_SHORT, true).show();
         }
+    }
+
+    private void hideLogin() {
+        btn_tab5.setVisibility(View.GONE);
+        tv_tab5.setVisibility(View.GONE);
+        tv_tab5_bottom.setText("未连接");
+        tv_tab5.setText("未连接");
+        mLoginConfig.setUserName("");
+        setIslog(false);
     }
 }
 

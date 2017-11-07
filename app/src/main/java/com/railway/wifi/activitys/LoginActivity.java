@@ -77,6 +77,7 @@ public class LoginActivity extends BaseActivity {
 
     private void backfinish() {
         Intent mIntent = new Intent();
+        mIntent.putExtra("islog","true");
         // 设置结果，并进行传送
         this.setResult(RESULT_OK, mIntent);
         finish();

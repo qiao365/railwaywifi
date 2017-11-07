@@ -100,7 +100,6 @@ public class HttpUtil {
                 // Post方式
                 conn.setRequestMethod(parm.getRequest()); // Post方式
                 conn.setDoOutput(true);// 允许输出
-
                 OutputStream outputStream = conn.getOutputStream();
                 byte[] bytes;
                 bytes = parm.getStringJsonData().getBytes();

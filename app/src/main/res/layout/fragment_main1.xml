@@ -126,10 +126,11 @@
                     android:layout_marginTop="20px"
                     android:background="@color/black" />
                 <TextView
+                    android:id="@+id/tvDevices"
                     android:layout_width="match_parent"
                     android:layout_height="100px"
                     android:gravity="center"
-                    android:text="本车厢当前设备连接数：50"
+                    android:text="本车厢当前设备连接数：--"
                     />
 
                 <com.github.mikephil.charting.charts.PieChart
