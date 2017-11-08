@@ -24,6 +24,7 @@ import com.railway.wifi.activitys.WebViewActivity;
 import com.railway.wifi.http.httputils.HttpUtil;
 import com.railway.wifi.utils.GlobleValue;
 import com.railway.wifi.utils.PicassoImageLoader;
+import com.railway.wifi.views.CompletedView;
 import com.railway.wifi.views.ObservableScrollView;
 import com.railway.wifi.R;
 import com.railway.wifi.http.httputils.AllUrl;
@@ -33,15 +34,10 @@ import com.railway.wifi.http.requestparams.BaseRequestParm;
 import com.railway.wifi.http.responsebeans.BaseResponseBean;
 import com.railway.wifi.http.responsebeans.RequestListener;
 import com.github.mikephil.charting.animation.Easing;
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
+import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,23 +52,13 @@ import java.util.List;
 public class HomeMain1Fragment extends Fragment implements View.OnClickListener, ObservableScrollView.ScrollViewListener, SwipeRefreshLayout.OnRefreshListener {
 
     private RecyclerView mRecyclerView;
-    private ImageView image_header;
-    private ObservableScrollView personalScrollView;
-    private ImageView nodataImageView;
-    private int height;
-    private View layoutHead;
-    private ImageView imageView;
-    private ImageView mTabLineIv;
-    private TextView mTvOne, mTvTwo, tv_zongzichang, zongzichang, tvWallet2, tvWallet;
-    private int screenWidth;
-    private PieChart mChart;
-    private DrawerLayout mDrawerLayout;
-    private ListView mListView;
     private SwipeRefreshLayout mSwipeRefreshWidget;
     private Context mContext;
     private String devicesNum = "--";
     private TextView tvDevices;
     private LinearLayout topBtn1, topBtn2, topBtn3;
+    private CompletedView mCompletedView;
+    private int mCurrentProgress = 50;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -80,6 +66,7 @@ public class HomeMain1Fragment extends Fragment implements View.OnClickListener,
         mContext = view.getContext();
         initView(view);
         initBanners(view);
+        new Thread(new ProgressRunable()).start();
         return view;
     }
 
@@ -89,7 +76,16 @@ public class HomeMain1Fragment extends Fragment implements View.OnClickListener,
         getDivices();
     }
 
+    class ProgressRunable implements Runnable {
+
+        @Override
+        public void run() {
+            mCompletedView.setProgress(mCurrentProgress);
+        }
+    }
+
     private void initView(View view) {
+        mCompletedView = (CompletedView) view.findViewById(R.id.mCompletedView);
         tvDevices = (TextView) view.findViewById(R.id.tvDevices);
         topBtn1 = (LinearLayout) view.findViewById(R.id.topBtn1);
         topBtn2 = (LinearLayout) view.findViewById(R.id.topBtn2);
@@ -99,87 +95,9 @@ public class HomeMain1Fragment extends Fragment implements View.OnClickListener,
         topBtn3.setOnClickListener(this);
         mSwipeRefreshWidget = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_widget);
         //设置卷内的颜色
-        mSwipeRefreshWidget.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
+        mSwipeRefreshWidget.setColorSchemeResources(android.R.color.holo_orange_light, android.R.color.holo_red_light, android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light);
         mSwipeRefreshWidget.setOnRefreshListener(this);
-        mChart = (PieChart) view.findViewById(R.id.spread_pie_chart);
-        // 设置 pieChart 图表基本属性
-        mChart.setUsePercentValues(false);            //使用百分比显示
-        mChart.getDescription().setEnabled(false);    //设置pieChart图表的描述
-        mChart.setBackgroundColor(Color.WHITE);      //设置pieChart图表背景色
-//        mChart.setExtraOffsets(5, 5, 5, 5);        //设置pieChart图表上下左右的偏移，类似于外边距
-        mChart.setDragDecelerationFrictionCoef(0.95f);//设置pieChart图表转动阻力摩擦系数[0,1]
-        mChart.setRotationAngle(0);                   //设置pieChart图表起始角度
-        mChart.setRotationEnabled(true);              //设置pieChart图表是否可以手动旋转
-        mChart.setHighlightPerTapEnabled(true);       //设置piecahrt图表点击Item高亮是否可用
-        mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);// 设置pieChart图表展示动画效果
-
-        // 设置 pieChart 图表Item文本属性
-        mChart.setDrawEntryLabels(true);              //设置pieChart是否只显示饼图上百分比不显示文字（true：下面属性才有效果）
-        mChart.setEntryLabelColor(Color.WHITE);       //设置pieChart图表文本字体颜色
-        mChart.setEntryLabelTextSize(10f);            //设置pieChart图表文本字体大小
-
-        // 设置 pieChart 内部圆环属性
-        mChart.setDrawHoleEnabled(true);              //是否显示PieChart内部圆环(true:下面属性才有意义)
-        mChart.setHoleRadius(50f);                    //设置PieChart内部圆的半径(这里设置28.0f)
-        mChart.setTransparentCircleRadius(53f);       //设置PieChart内部透明圆的半径(这里设置31.0f)
-        mChart.setTransparentCircleColor(Color.BLACK);//设置PieChart内部透明圆与内部圆间距(31f-28f)填充颜色
-        mChart.setTransparentCircleAlpha(50);         //设置PieChart内部透明圆与内部圆间距(31f-28f)透明度[0~255]数值越小越透明
-        mChart.setHoleColor(Color.parseColor("#ea9ff7"));             //设置PieChart内部圆的颜色
-        mChart.setDrawCenterText(true);               //是否绘制PieChart内部中心文本（true：下面属性才有意义）
-        mChart.setCenterText("流量");                 //设置PieChart内部圆文字的内容
-        mChart.setCenterTextSize(20f);                //设置PieChart内部圆文字的大小
-        mChart.setCenterTextColor(Color.WHITE);         //设置PieChart内部圆文字的颜色
-
-        // 获取pieCahrt图列
-        Legend l = mChart.getLegend();
-        l.setEnabled(true);                    //是否启用图列（true：下面属性才有意义）
-        l.setVerticalAlignment(Legend.LegendVerticalAlignment.CENTER);
-        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
-        l.setOrientation(Legend.LegendOrientation.VERTICAL);
-        l.setForm(Legend.LegendForm.DEFAULT); //设置图例的形状
-        l.setFormSize(8);                      //设置图例的大小
-        l.setFormToTextSpace(10f);              //设置每个图例实体中标签和形状之间的间距
-        l.setDrawInside(false);
-        l.setWordWrapEnabled(true);              //设置图列换行(注意使用影响性能,仅适用legend位于图表下面)
-//        l.setXEntrySpace(10f);                  //设置图例实体之间延X轴的间距（setOrientation = HORIZONTAL有效）
-//        l.setOrientation(Legend.LegendOrientation.VERTICAL);
-//        l.setYEntrySpace(-18f);                  //设置图例实体之间延Y轴的间距（setOrientation = VERTICAL 有效）
-//        l.setYOffset(-18f);                      //设置比例块Y轴偏移量
-        l.setTextSize(14f);                      //设置图例标签文本的大小
-        l.setTextColor(Color.BLACK);//设置图例标签文本的颜色
-        setData();
-
-    }
-
-    /**
-     * 设置饼图的数据
-     */
-    private void setData() {
-        ArrayList<PieEntry> pieEntryList = new ArrayList<PieEntry>();
-        ArrayList<Integer> colors = new ArrayList<Integer>();
-        colors.add(Color.parseColor("#3314f3"));
-        colors.add(Color.parseColor("#82d637"));
-        //饼图实体 PieEntry
-        PieEntry CashBalance = new PieEntry(15, "流量剩余 150 M");
-        PieEntry ConsumptionBalance = new PieEntry(85, "已用流量 850 M");
-        pieEntryList.add(CashBalance);
-        pieEntryList.add(ConsumptionBalance);
-        //饼状图数据集 PieDataSet
-        PieDataSet pieDataSet = new PieDataSet(pieEntryList, "总流量 :1G");
-        pieDataSet.setSliceSpace(3f);           //设置饼状Item之间的间隙
-        pieDataSet.setSelectionShift(10f);      //设置饼状Item被选中时变化的距离
-        pieDataSet.setColors(colors);           //为DataSet中的数据匹配上颜色集(饼图Item颜色)
-        //最终数据 PieData
-        PieData pieData = new PieData(pieDataSet);
-        pieData.setDrawValues(true);            //设置是否显示数据实体(百分比，true:以下属性才有意义)
-        pieData.setValueTextColor(Color.WHITE);  //设置所有DataSet内数据实体（百分比）的文本颜色
-        pieData.setValueTextSize(12f);          //设置所有DataSet内数据实体（百分比）的文本字体大小
-//        pieData.setValueTypeface(mTfLight);     //设置所有DataSet内数据实体（百分比）的文本字体样式
-        pieData.setValueFormatter(new PercentFormatter());//设置所有DataSet内数据实体（百分比）的文本字体格式
-        mChart.setData(pieData);
-        mChart.highlightValues(null);
-        mChart.invalidate();                    //将图表重绘以显示设置的属性和数据
     }
 
     private void initBanners(View view) {
@@ -208,6 +126,12 @@ public class HomeMain1Fragment extends Fragment implements View.OnClickListener,
         banner.setIndicatorGravity(BannerConfig.CENTER);
         //banner设置方法全部调用完毕时最后调用
         banner.start();
+        banner.setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+
+            }
+        });
     }
 
     @Override
@@ -239,19 +163,19 @@ public class HomeMain1Fragment extends Fragment implements View.OnClickListener,
     @Override
     public void onScrollChanged(ObservableScrollView scrollView, int x, int y, int oldx, int oldy) {
 //		Log.i("TAG","y--->"+y+"    height-->"+height);
-        if (y <= height) {
-            float scale = (float) y / height;
-            float alpha = (255 * scale);
-//			Log.i("TAG","alpha--->"+alpha);
-            //layout全部透明
-//			layoutHead.setAlpha(scale);
-            //只是layout背景透明(仿知乎滑动效果)
-            layoutHead.setBackgroundColor(Color.argb((int) alpha, 20, 52, 161));
-            layoutHead.setAlpha(scale);
-
-            tv_zongzichang.setAlpha(1 - scale);
-            zongzichang.setAlpha(1 - scale);
-        }
+//        if (y <= height) {
+//            float scale = (float) y / height;
+//            float alpha = (255 * scale);
+////			Log.i("TAG","alpha--->"+alpha);
+//            //layout全部透明
+////			layoutHead.setAlpha(scale);
+//            //只是layout背景透明(仿知乎滑动效果)
+//            layoutHead.setBackgroundColor(Color.argb((int) alpha, 20, 52, 161));
+//            layoutHead.setAlpha(scale);
+//
+//            tv_zongzichang.setAlpha(1 - scale);
+//            zongzichang.setAlpha(1 - scale);
+//        }
     }
 
     @Override

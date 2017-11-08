@@ -67,6 +67,9 @@
     <color name="white">#ffffffff</color>
     <color name="white_60_alpha">#99ffffff</color>
     <color name="white_80_alpha">#bbffffff</color>
+
+    <color name="white2">#f5f3f3</color>
+    <color name="colorRed">#d50f09</color>
     <!-- 珊瑚色 -->
     <color name="hotpink">#FF69B4</color>
     <!-- 热粉红色 -->
