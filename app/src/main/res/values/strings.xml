@@ -5,7 +5,7 @@
     <string name="prompt_email">请输入邮箱账号</string>
     <string name="prompt_name">请输入手机号码</string>
     <string name="wallet_name">钱包名称</string>
-    <string name="prompt_password">验证码</string>
+    <string name="prompt_password">请输入验证码</string>
     <string name="prompt_passwordagain">重复密码(6-16位)</string>
     <string name="action_sign_in">登录</string>
     <string name="action_register_in">注册</string>

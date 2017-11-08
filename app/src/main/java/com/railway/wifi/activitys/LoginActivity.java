@@ -1,8 +1,10 @@
 package com.railway.wifi.activitys;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -16,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.railway.wifi.http.httputils.HttpUtil;
 import com.railway.wifi.http.responsebeans.RequestListener;
 import com.railway.wifi.utils.Code;
@@ -39,7 +42,9 @@ import es.dmoral.toasty.Toasty;
 public class LoginActivity extends BaseActivity {
 
     private EditText telPhone, verCode;
-
+    private TextView btnsendCode;
+    //new倒计时对象,总共的时间,每隔多少秒更新一次时间
+    final MyCountDownTimer myCountDownTimer = new MyCountDownTimer(60000,1000);
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -68,7 +73,7 @@ public class LoginActivity extends BaseActivity {
         telPhone = (EditText) findViewById(R.id.telPhone);
         verCode = (EditText) findViewById(R.id.verCode);
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        Button btnsendCode = (Button) findViewById(R.id.sendCode);
+        btnsendCode = (TextView) findViewById(R.id.sendCode);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,7 +83,7 @@ public class LoginActivity extends BaseActivity {
         btnsendCode.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                verCode.setText(Code.getInstance().createCode());
+                myCountDownTimer.start();
             }
         });
     }
@@ -137,5 +142,32 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
+
+    //复写倒计时
+    private class MyCountDownTimer extends CountDownTimer {
+
+        public MyCountDownTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        //计时过程
+        @Override
+        public void onTick(long l) {
+            //防止计时过程中重复点击
+            btnsendCode.setClickable(false);
+            btnsendCode.setText(l / 1000 + "s");
+            btnsendCode.setTextColor(Color.RED);
+        }
+
+        //计时完毕的方法
+        @Override
+        public void onFinish() {
+            //重新给Button设置文字
+            btnsendCode.setText("发送验证码");
+            //设置可点击
+            btnsendCode.setClickable(true);
+            btnsendCode.setTextColor(Color.parseColor("#858891"));
+        }
+    }
 }
 

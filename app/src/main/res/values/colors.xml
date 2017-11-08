@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="fontBlack1">#858891</color>
+    <color name="statebarColor">#609fec</color>
+
+
     <color name="colorPrimary">#717574</color>
     <color name="colorPrimaryDark">#717574</color>
     <color name="colorAccent">#FF4081</color>
