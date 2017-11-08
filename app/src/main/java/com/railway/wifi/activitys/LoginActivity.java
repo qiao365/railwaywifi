@@ -156,7 +156,7 @@ public class LoginActivity extends BaseActivity {
             //防止计时过程中重复点击
             btnsendCode.setClickable(false);
             btnsendCode.setText(l / 1000 + "s");
-            btnsendCode.setTextColor(Color.RED);
+            btnsendCode.setTextColor(Color.parseColor("#be29e9"));
         }
 
         //计时完毕的方法

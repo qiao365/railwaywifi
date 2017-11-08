@@ -32,8 +32,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="200px"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingBottom="20px">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -51,6 +51,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="20px"
+                    android:background="@color/lineColor"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -59,6 +60,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_weight="1"
+                        android:background="@android:color/white"
                         android:orientation="vertical">
 
                         <ImageView
@@ -81,7 +83,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
+                        android:layout_marginLeft="2px"
+                        android:layout_marginRight="2px"
                         android:layout_weight="1"
+                        android:background="@android:color/white"
                         android:orientation="vertical">
 
                         <ImageView
@@ -105,6 +110,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_weight="1"
+                        android:background="@android:color/white"
                         android:orientation="vertical">
 
                         <ImageView
@@ -124,19 +130,13 @@
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2px"
-                    android:layout_marginBottom="40px"
-                    android:layout_marginTop="20px"
-                    android:background="@color/black" />
-
                 <TextView
                     android:id="@+id/tvDevices"
                     android:layout_width="match_parent"
                     android:layout_height="100px"
                     android:layout_marginLeft="100px"
                     android:layout_marginRight="100px"
+                    android:layout_marginTop="20px"
                     android:background="@drawable/tag_normal"
                     android:gravity="center"
                     android:paddingBottom="-20px"
@@ -146,6 +146,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
+                    android:layout_marginTop="20px"
                     android:layout_height="223dp">
 
                     <com.railway.wifi.views.CompletedView
@@ -164,7 +165,7 @@
                         android:layout_width="2px"
                         android:layout_height="210dp"
                         android:layout_centerInParent="true"
-                        android:background="@color/gray_dark" />
+                        android:background="@color/lineColor" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -235,7 +236,7 @@
                                     android:layout_marginTop="15dp"
                                     android:gravity="left"
                                     android:text="1000M"
-                                    android:textColor="@color/blue_lake" />
+                                    android:textColor="@color/fontbluecolor" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -245,7 +246,7 @@
                                     android:layout_marginTop="15dp"
                                     android:gravity="left"
                                     android:text="500M"
-                                    android:textColor="@color/blue_lake" />
+                                    android:textColor="@color/fontbluecolor" />
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -255,7 +256,7 @@
                                     android:layout_marginTop="15dp"
                                     android:gravity="left"
                                     android:text="500M"
-                                    android:textColor="@color/blue_lake" />
+                                    android:textColor="@color/fontbluecolor" />
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
