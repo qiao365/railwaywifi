@@ -1,268 +1,280 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:focusable="true"
-    android:focusableInTouchMode="true"
-    android:orientation="vertical">
+    android:focusableInTouchMode="true">
 
-    <RelativeLayout
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="144px"
-        android:background="@color/backColor">
+        android:layout_height="wrap_content"
+        android:background="@mipmap/ic_top"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="欢迎使用青藏铁路无线上网服务" />
-    </RelativeLayout>
+            android:layout_height="144px">
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh_widget"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:text="欢迎使用青藏铁路无线上网服务" />
+        </RelativeLayout>
 
-        <com.railway.wifi.views.ObservableScrollView
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_widget"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
+            <com.railway.wifi.views.ObservableScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingBottom="20px">
+                android:layout_height="match_parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingBottom="30px">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="30px"
+                    android:paddingBottom="20px">
 
-                    <com.youth.banner.Banner xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/banner"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="620px" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20px"
-                    android:background="@color/lineColor"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:id="@+id/topBtn1"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:layout_weight="1"
-                        android:background="@android:color/white"
-                        android:orientation="vertical">
+                        android:orientation="horizontal"
+                        android:layout_margin="40px">
 
-                        <ImageView
-                            android:layout_width="120px"
-                            android:layout_height="120px"
-                            android:layout_gravity="center"
-                            android:background="@mipmap/ic_defailt" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="10px"
-                            android:text="院线"
-                            android:textSize="32px" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/topBtn2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:layout_marginLeft="2px"
-                        android:layout_marginRight="2px"
-                        android:layout_weight="1"
-                        android:background="@android:color/white"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="120px"
-                            android:layout_height="120px"
-                            android:layout_gravity="center"
-                            android:background="@mipmap/ic_defailt" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="10px"
-                            android:text="游戏"
-                            android:textSize="32px" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/topBtn3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:layout_weight="1"
-                        android:background="@android:color/white"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="120px"
-                            android:layout_height="120px"
-                            android:layout_gravity="center"
-                            android:background="@mipmap/ic_defailt" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="10px"
-                            android:text="阅读"
-                            android:textSize="32px" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tvDevices"
-                    android:layout_width="match_parent"
-                    android:layout_height="100px"
-                    android:layout_marginLeft="100px"
-                    android:layout_marginRight="100px"
-                    android:layout_marginTop="20px"
-                    android:background="@drawable/tag_normal"
-                    android:gravity="center"
-                    android:paddingBottom="-20px"
-                    android:paddingTop="-20px"
-                    android:text="本车厢当前设备连接数：--"
-                    android:textSize="12sp" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="20px"
-                    android:layout_height="223dp">
-
-                    <com.railway.wifi.views.CompletedView
-                        android:id="@+id/mCompletedView"
-                        android:layout_width="223dp"
-                        android:layout_height="223dp"
-                        android:layout_alignParentLeft="true"
-                        app:circleColor="@color/white"
-                        app:radius="50dip"
-                        app:ringBgColor="@color/white2"
-                        app:ringColor="@color/blue_lake"
-                        app:strokeWidth="25dip" />
-
-                    <View
-                        android:id="@+id/line"
-                        android:layout_width="2px"
-                        android:layout_height="210dp"
-                        android:layout_centerInParent="true"
-                        android:background="@color/lineColor" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentRight="true"
-                        android:layout_toRightOf="@+id/line"
-                        android:gravity="center_vertical"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/llsyqk"
+                        <com.youth.banner.Banner xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/banner"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="流量使用情况"
-                            android:textSize="18sp" />
+                            android:layout_height="680px" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20px"
+                        android:background="@color/lineColor"
+                        android:orientation="horizontal">
 
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:id="@+id/topBtn1"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:background="@android:color/white"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="120px"
+                                android:layout_height="120px"
+                                android:layout_gravity="center"
+                                android:background="@mipmap/icon_film" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10px"
+                                android:text="院线"
+                                android:textSize="32px" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/topBtn2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginLeft="2px"
+                            android:layout_marginRight="2px"
+                            android:layout_weight="1"
+                            android:background="@android:color/white"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="120px"
+                                android:layout_height="120px"
+                                android:layout_gravity="center"
+                                android:background="@mipmap/icon_game" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10px"
+                                android:text="游戏"
+                                android:textSize="32px" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/topBtn3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:background="@android:color/white"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="120px"
+                                android:layout_height="120px"
+                                android:layout_gravity="center"
+                                android:background="@mipmap/icon_book" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10px"
+                                android:text="阅读"
+                                android:textSize="32px" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvDevices"
+                        android:layout_width="match_parent"
+                        android:layout_height="100px"
+                        android:layout_marginLeft="100px"
+                        android:layout_marginRight="100px"
+                        android:layout_marginTop="20px"
+                        android:background="@drawable/tag_normal"
+                        android:gravity="center"
+                        android:paddingBottom="-20px"
+                        android:paddingTop="-20px"
+                        android:text="本车厢当前设备连接数：--"
+                        android:textSize="12sp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="223dp"
+                        android:layout_marginTop="20px">
+
+                        <com.railway.wifi.views.CompletedView
+                            android:id="@+id/mCompletedView"
+                            android:layout_width="223dp"
+                            android:layout_height="223dp"
+                            android:layout_alignParentLeft="true"
+                            app:circleColor="@color/white"
+                            app:radius="50dip"
+                            app:ringBgColor="@color/white2"
+                            app:ringColor="@color/blue_lake"
+                            app:strokeWidth="25dip" />
+
+                        <View
+                            android:id="@+id/line"
+                            android:layout_width="2px"
+                            android:layout_height="210dp"
+                            android:layout_centerInParent="true"
+                            android:background="@color/lineColor" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:layout_toRightOf="@+id/line"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/llsyqk"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="流量使用情况"
+                                android:textSize="18sp" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
 
-                                <TextView
+                                <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="0dp"
-                                    android:layout_marginRight="15dp"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="right"
-                                    android:text="@string/zongliuliang" />
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
 
-                                <TextView
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="0dp"
+                                        android:layout_marginRight="15dp"
+                                        android:layout_marginTop="15dp"
+                                        android:gravity="right"
+                                        android:text="@string/zongliuliang" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="0dp"
+                                        android:layout_marginRight="15dp"
+                                        android:layout_marginTop="15dp"
+                                        android:gravity="right"
+                                        android:text="已使用流量" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="0dp"
+                                        android:layout_marginRight="15dp"
+                                        android:layout_marginTop="15dp"
+                                        android:gravity="right"
+                                        android:text="未使用流量" />
+                                </LinearLayout>
+
+                                <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="0dp"
-                                    android:layout_marginRight="15dp"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="right"
-                                    android:text="已使用流量" />
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
 
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="0dp"
-                                    android:layout_marginRight="15dp"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="right"
-                                    android:text="未使用流量" />
-                            </LinearLayout>
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="15dp"
+                                        android:layout_marginRight="0dp"
+                                        android:layout_marginTop="15dp"
+                                        android:gravity="left"
+                                        android:text="1000M"
+                                        android:textColor="@color/fontbluecolor" />
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="15dp"
+                                        android:layout_marginRight="0dp"
+                                        android:layout_marginTop="15dp"
+                                        android:gravity="left"
+                                        android:text="500M"
+                                        android:textColor="@color/fontbluecolor" />
 
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="15dp"
-                                    android:layout_marginRight="0dp"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="left"
-                                    android:text="1000M"
-                                    android:textColor="@color/fontbluecolor" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="15dp"
-                                    android:layout_marginRight="0dp"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="left"
-                                    android:text="500M"
-                                    android:textColor="@color/fontbluecolor" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="15dp"
-                                    android:layout_marginRight="0dp"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="left"
-                                    android:text="500M"
-                                    android:textColor="@color/fontbluecolor" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="15dp"
+                                        android:layout_marginRight="0dp"
+                                        android:layout_marginTop="15dp"
+                                        android:gravity="left"
+                                        android:text="500M"
+                                        android:textColor="@color/fontbluecolor" />
+                                </LinearLayout>
                             </LinearLayout>
                         </LinearLayout>
-                    </LinearLayout>
-                </RelativeLayout>
-            </LinearLayout>
+                    </RelativeLayout>
+                </LinearLayout>
 
-        </com.railway.wifi.views.ObservableScrollView>
-    </android.support.v4.widget.SwipeRefreshLayout>
-</LinearLayout>
+            </com.railway.wifi.views.ObservableScrollView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </LinearLayout>
+</RelativeLayout>

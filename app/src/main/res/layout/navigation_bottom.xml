@@ -81,7 +81,7 @@
                     android:layout_height="80px"
                     android:layout_gravity="top|center"
                     android:layout_marginTop="6px"
-                    android:src="@mipmap/ic_wode"
+                    android:src="@mipmap/ic_wifi"
                     android:visibility="visible" />
 
                 <ImageView
@@ -90,7 +90,7 @@
                     android:layout_height="80px"
                     android:layout_gravity="top|center"
                     android:layout_marginTop="6px"
-                    android:src="@mipmap/ic_wode_pre"
+                    android:src="@mipmap/ic_wifi_press"
                     android:visibility="gone" />
 
                 <TextView

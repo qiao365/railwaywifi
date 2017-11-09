@@ -104,9 +104,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        hidebtn();
         switch (view.getId()) {
             case R.id.tab1:
+                hidebtn();
                 btn_tab1.setVisibility(View.VISIBLE);
                 tv_tab1.setVisibility(View.VISIBLE);
                 transaction = fragmentManager.beginTransaction();
@@ -122,6 +122,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
                 break;
             case R.id.tab6:
+                hidebtn();
                 btn_tab6.setVisibility(View.VISIBLE);
                 tv_tab6.setVisibility(View.VISIBLE);
                 transaction = fragmentManager.beginTransaction();

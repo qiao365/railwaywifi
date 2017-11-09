@@ -15,36 +15,37 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="154px"
-                android:background="@android:color/white">
+                android:layout_height="wrap_content"
+                android:background="@mipmap/ic_top">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="154px"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/h8"
+                    android:text="个人主页" />
 
                 <TextView
-                    android:id="@+id/tv_info"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="个人主页"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/h8" />
-            </RelativeLayout>
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:text="用户名" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="100px"
-                android:gravity="center"
-                android:textSize="@dimen/h6"
-                android:text="用户名" />
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:textColor="@color/fontBlack2"
+                    android:layout_marginTop="10px"
+                     />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="100px"
-                android:gravity="center"
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:text="18810083256" />
 
             <TextView
                 android:id="@+id/tvDevices"
@@ -208,7 +209,7 @@
                         android:layout_toLeftOf="@+id/imgCenter"
                         android:layout_weight="1"
                         android:scaleType="fitCenter"
-                        android:src="@mipmap/ic_launcher_round" />
+                        android:src="@mipmap/ic_buywifi_pre" />
 
                     <ImageView
                         android:id="@+id/imgCenter"
@@ -217,7 +218,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_weight="1"
                         android:scaleType="fitCenter"
-                        android:src="@mipmap/ic_launcher_round" />
+                        android:src="@mipmap/ic_buywifi_def" />
 
                     <ImageView
                         android:id="@+id/imgTwo"
@@ -227,15 +228,18 @@
                         android:layout_toRightOf="@+id/imgCenter"
                         android:layout_weight="1"
                         android:scaleType="fitCenter"
-                        android:src="@mipmap/ic_launcher_round" />
+                        android:src="@mipmap/ic_buywifi_def" />
 
                     <TextView
+                        android:id="@+id/tvOne"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignBottom="@+id/imgCenter"
                         android:layout_alignLeft="@+id/imgOne"
                         android:layout_alignRight="@+id/imgOne"
                         android:layout_alignTop="@+id/imgCenter"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/h8"
                         android:gravity="center"
                         android:text="1G" />
 
@@ -247,16 +251,19 @@
                         android:layout_alignLeft="@+id/imgCenter"
                         android:layout_alignRight="@+id/imgCenter"
                         android:layout_alignTop="@+id/imgCenter"
+                        android:textSize="@dimen/h8"
                         android:gravity="center"
                         android:text="5G" />
 
                     <TextView
+                        android:id="@+id/tvTwo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignBottom="@+id/imgCenter"
                         android:layout_alignLeft="@+id/imgTwo"
                         android:layout_alignRight="@+id/imgTwo"
                         android:layout_alignTop="@+id/imgCenter"
+                        android:textSize="@dimen/h8"
                         android:gravity="center"
                         android:text="10G" />
 
@@ -295,6 +302,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_chongzhi"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="100px"
                 android:layout_marginRight="100px"

@@ -22,12 +22,13 @@ public class PicassoImageLoader extends ImageLoader {
          切记不要胡乱强转！
          */
         //Picasso 加载图片简单用法
-        		Picasso.with(context)
-				.load(path.toString())
-				.error(R.mipmap.ic_launcher)
-				.fit()
-				.centerCrop()
-				.into(imageView);
+//        		Picasso.with(context)
+//				.load(path.toString())
+//				.error(R.mipmap.ic_launcher)
+//				.fit()
+//				.centerCrop()
+//				.into(imageView);
+		imageView.setBackgroundResource(R.mipmap.ic_banner_1);
     }
 
 //    //提供createImageView 方法，如果不用可以不重写这个方法，主要是方便自定义ImageView的创建
