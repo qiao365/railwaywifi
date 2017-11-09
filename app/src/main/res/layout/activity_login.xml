@@ -119,6 +119,7 @@
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:button="@drawable/login_checkbox"
                     android:checked="true" />
 
                 <TextView
