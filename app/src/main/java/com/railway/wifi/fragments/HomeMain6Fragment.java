@@ -52,7 +52,7 @@ public class HomeMain6Fragment extends Fragment implements View.OnClickListener 
         tv_chongzhi.setOnClickListener(this);
         mCompletedView = (CompletedView) view.findViewById(R.id.mCompletedView);
         name = (TextView) view.findViewById(R.id.name);
-        name.setText(LoginConfig.getUserName()+"199999999999");
+        name.setText(getTel(LoginConfig.getUserName()));
     }
 
     @Override
@@ -99,9 +99,11 @@ public class HomeMain6Fragment extends Fragment implements View.OnClickListener 
         }
     }
 
-    private String getTel(String tel){
-
-        tel.replaceAll("(\\d{3})\\d{4}(\\d{4})","$1****$2");
-        return tel;
+    private String getTel(String tel) {
+        if (tel == null || tel.equals("")) {
+            return "";
+        }
+        String t = tel.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2");
+        return t;
     }
 }
