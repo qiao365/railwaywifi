@@ -65,7 +65,7 @@
                     android:layout_marginBottom="18px"
                     android:text="首页"
                     android:textSize="30px"
-                    android:textColor="@color/main_blue_light"
+                    android:textColor="@color/fontTab1"
                     android:visibility="visible" />
             </FrameLayout>
 
@@ -110,7 +110,7 @@
                     android:layout_gravity="bottom|center"
                     android:layout_marginBottom="18px"
                     android:text="未连接"
-                    android:textColor="@color/main_blue_light"
+                    android:textColor="@color/fontTab2"
                     android:textSize="30px"
                     android:visibility="gone" />
 
@@ -156,7 +156,7 @@
                     android:layout_gravity="bottom|center"
                     android:layout_marginBottom="18px"
                     android:text="个人"
-                    android:textColor="@color/main_blue_light"
+                    android:textColor="@color/fontTab1"
                     android:textSize="30px"
                     android:visibility="gone" />
 

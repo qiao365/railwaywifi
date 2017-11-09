@@ -2,6 +2,8 @@
 <resources>
     <color name="fontBlack1">#858891</color>
     <color name="fontBlack2">#575757</color>
+    <color name="fontTab1">#0048ec</color>
+    <color name="fontTab2">#2bd82b</color>
     <color name="statebarColor">#3384ec</color>
     <color name="lineColor">#ffced5db</color>
     <color name="fontbluecolor">#3c51ac</color>
