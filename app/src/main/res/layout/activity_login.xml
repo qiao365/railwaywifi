@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:background="@mipmap/ic_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -17,7 +18,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100px"
             android:text="用户登录"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/h8" />
 
         <ImageView
@@ -86,7 +87,6 @@
                 android:layout_alignParentRight="true"
                 android:textColor="#858891"
                 android:gravity="center"
-                android:layout_marginBottom="28px"
                 android:background="@drawable/btn_back_normal"
                 android:padding="20px"
                 android:text="发送验证码" />
