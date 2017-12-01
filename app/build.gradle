@@ -15,56 +15,56 @@ android {
 
     //签名
     signingConfigs {
-        debug {
+//        debug {
+////            keyAlias 'ebonpm_mobile'
+////            keyPassword '123456'
+////            storeFile file('doc/gcwkeystory')
+////            storePassword '123456'
+//            v1SigningEnabled true
+//            v2SigningEnabled true
+//        }
+//        release {
 //            keyAlias 'ebonpm_mobile'
 //            keyPassword '123456'
 //            storeFile file('doc/gcwkeystory')
 //            storePassword '123456'
-            v1SigningEnabled true
-            v2SigningEnabled true
-        }
-        release {
-            keyAlias 'ebonpm_mobile'
-            keyPassword '123456'
-            storeFile file('doc/gcwkeystory')
-            storePassword '123456'
-            v1SigningEnabled true
-            v2SigningEnabled true
-        }
+//            v1SigningEnabled true
+//            v2SigningEnabled true
+//        }
     }
 
     buildTypes {
 
-        debug {
-            buildConfigField "boolean", "LOG_DEBUG", "true"
-            minifyEnabled false
-            zipAlignEnabled false
-            shrinkResources false
-//            signingConfig signingConfigs.debug
-//            buildConfigField("String", "IP", "\"192.168.1.23:8080\"")
-            buildConfigField("String", "IP", "\"1.119.10.198:8082\"")
-//            manifestPlaceholders = [
-//                    JPUSH_PKGNAME: defaultConfig.applicationId,
-//                    JPUSH_APPKEY : "97dc8be31a6c0e4f863c3cb0",
-//                    JPUSH_CHANNEL: "developer-default" //暂时填写默认值即可.
-//            ]
-        }
+//        debug {
+//            buildConfigField "boolean", "LOG_DEBUG", "true"
+//            minifyEnabled false
+//            zipAlignEnabled false
+//            shrinkResources false
+////            signingConfig signingConfigs.debug
+////            buildConfigField("String", "IP", "\"192.168.1.23:8080\"")
+//            buildConfigField("String", "IP", "\"1.119.10.198:8082\"")
+////            manifestPlaceholders = [
+////                    JPUSH_PKGNAME: defaultConfig.applicationId,
+////                    JPUSH_APPKEY : "97dc8be31a6c0e4f863c3cb0",
+////                    JPUSH_CHANNEL: "developer-default" //暂时填写默认值即可.
+////            ]
+//        }
 
-        release {
-            buildConfigField "boolean", "LOG_DEBUG", "false"
-            minifyEnabled false //混淆
-            zipAlignEnabled true    //Zipalign优化
-            shrinkResources true// 移除无用的resource文件
-//            加载默认混淆配置文件 progudard-android.txt在sdk目录里面，不用管，proguard.cfg是我们自己配<span></span>的混淆文件
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
-            buildConfigField("String", "IP", "\"112.126.89.88:80\"")
-//            manifestPlaceholders = [
-//                    JPUSH_PKGNAME: defaultConfig.applicationId,
-//                    JPUSH_APPKEY : "cf47a7a62ce8915c994714f9",
-//                    JPUSH_CHANNEL: "developer-default"
-//            ]
-        }
+//        release {
+//            buildConfigField "boolean", "LOG_DEBUG", "false"
+//            minifyEnabled false //混淆
+//            zipAlignEnabled true    //Zipalign优化
+//            shrinkResources true// 移除无用的resource文件
+////            加载默认混淆配置文件 progudard-android.txt在sdk目录里面，不用管，proguard.cfg是我们自己配<span></span>的混淆文件
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.release
+//            buildConfigField("String", "IP", "\"112.126.89.88:80\"")
+////            manifestPlaceholders = [
+////                    JPUSH_PKGNAME: defaultConfig.applicationId,
+////                    JPUSH_APPKEY : "cf47a7a62ce8915c994714f9",
+////                    JPUSH_CHANNEL: "developer-default"
+////            ]
+//        }
     }
 
     allprojects {
